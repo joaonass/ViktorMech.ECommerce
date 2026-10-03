@@ -1,0 +1,25 @@
+<Solution>
+  <Project Path="VendingMachine.Api/VendingMachine.Api.csproj" />
+  <Project Path="VendingMachine.App/" Type="Website" DisplayName="VendingMachine.App">
+    <BuildType Project="Debug" />
+    <Properties Name="WebsiteProperties">
+      <Property Name="Debug.AspNetCompiler.Debug" Value="&quot;True&quot;" />
+      <Property Name="Debug.AspNetCompiler.FixedNames" Value="&quot;false&quot;" />
+      <Property Name="Debug.AspNetCompiler.ForceOverwrite" Value="&quot;true&quot;" />
+      <Property Name="Debug.AspNetCompiler.PhysicalPath" Value="&quot;VendingMachine.App\&quot;" />
+      <Property Name="Debug.AspNetCompiler.TargetPath" Value="&quot;PrecompiledWeb\localhost_54018\&quot;" />
+      <Property Name="Debug.AspNetCompiler.Updateable" Value="&quot;true&quot;" />
+      <Property Name="Debug.AspNetCompiler.VirtualPath" Value="&quot;/localhost_54018&quot;" />
+      <Property Name="Release.AspNetCompiler.Debug" Value="&quot;False&quot;" />
+      <Property Name="Release.AspNetCompiler.FixedNames" Value="&quot;false&quot;" />
+      <Property Name="Release.AspNetCompiler.ForceOverwrite" Value="&quot;true&quot;" />
+      <Property Name="Release.AspNetCompiler.PhysicalPath" Value="&quot;VendingMachine.App\&quot;" />
+      <Property Name="Release.AspNetCompiler.TargetPath" Value="&quot;PrecompiledWeb\localhost_54018\&quot;" />
+      <Property Name="Release.AspNetCompiler.Updateable" Value="&quot;true&quot;" />
+      <Property Name="Release.AspNetCompiler.VirtualPath" Value="&quot;/localhost_54018&quot;" />
+      <Property Name="TargetFrameworkMoniker" Value="&quot;.NETFramework,Version%3Dv4.8&quot;" />
+      <Property Name="VWDPort" Value="&quot;54018&quot;" />
+    </Properties>
+  </Project>
+  <Project Path="VendingMachine.Domain/VendingMachine.Domain.csproj" Id="d89a86da-4194-4200-ae70-ecc7fd831d96" />
+</Solution>
