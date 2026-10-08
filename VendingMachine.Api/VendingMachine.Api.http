@@ -1,6 +1,64 @@
 @VendingMachine.Api_HostAddress = http://localhost:5037
 
-GET {{VendingMachine.Api_HostAddress}}/weatherforecast/
+### Criar produto
+POST {{VendingMachine.Api_HostAddress}}/api/Produto
+Content-Type: application/json
+
+{
+    "nome": "Braço Cibernético Mk.1",
+    "tipo": "Implante",
+    "preco": 5000,
+    "quantidade": 10
+}
+
+###
+
+### Buscar produto
+GET {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
 Accept: application/json
 
 ###
+
+### PATCH - Alterar somente o preço
+PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+Content-Type: application/json
+
+{
+    "preco": 7500
+}
+
+###
+
+### PATCH - Alterar preço e quantidade
+PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+Content-Type: application/json
+
+{
+    "preco": 8000,
+    "quantidade": 20
+}
+
+###
+
+### PATCH - Alterar todos os campos
+PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+Content-Type: application/json
+
+{
+    "nome": "Braço Cibernético Mk.2",
+    "tipo": "Implante Militar",
+    "preco": 10000,
+    "quantidade": 5
+}
+
+###
+
+### Buscar novamente para confirmar
+GET {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+Accept: application/json
+
+###
+
+### Deletar produto
+DELETE {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+Accept: application/json

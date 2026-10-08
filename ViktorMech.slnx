@@ -21,5 +21,7 @@
       <Property Name="VWDPort" Value="&quot;54018&quot;" />
     </Properties>
   </Project>
+  <Project Path="VendingMachine.Application/VendingMachine.Application.csproj" />
   <Project Path="VendingMachine.Domain/VendingMachine.Domain.csproj" Id="d89a86da-4194-4200-ae70-ecc7fd831d96" />
+  <Project Path="VendingMachine.Infrastructure/VendingMachine.Infrastructure.csproj" Id="00284367-d996-4cbe-a886-1e14e7719679" />
 </Solution>

@@ -1,7 +1,7 @@
 ﻿namespace VendingMachine.Domain.Exceptions
 {
     [Serializable]
-    internal class DomainException : Exception
+    public class DomainException : Exception
     {
         public DomainException()
         {

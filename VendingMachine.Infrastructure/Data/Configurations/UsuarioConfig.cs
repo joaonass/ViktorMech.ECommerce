@@ -33,6 +33,7 @@ namespace VendingMachine.Api.Data.Configurations
             {
                 email.Property(e => e.Endereco)
                 .HasColumnName("Email")
+                .HasMaxLength(254)
                 .IsRequired();
             });
 

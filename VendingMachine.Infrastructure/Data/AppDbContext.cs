@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VendingMachine.Domain.Entities;
 
-namespace VendingMachine.Api.Data;
+namespace VendingMachine.Infrastructure.Data;
 
 public class AppDbContext : DbContext
 {
@@ -9,14 +9,18 @@ public class AppDbContext : DbContext
         : base(options)
     {
     }
+
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Produto> Produtos { get; set; }
-    public DbSet<Administrador> Administradores { get; set; }   
+    public DbSet<Administrador> Administradores { get; set; }
     public DbSet<Carrinho> Carrinhos { get; set; }
     public DbSet<ItemCarrinho> ItensDoCorrinho { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(
+            typeof(AppDbContext).Assembly);
     }
 }

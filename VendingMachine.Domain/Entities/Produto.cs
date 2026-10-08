@@ -23,5 +23,25 @@ namespace VendingMachine.Domain.Entities
 
         }
 
+        public void AlterarNome(string nome)
+        {
+            NomeDoProduto = new NomeDoProduto(nome);
+        }
+
+        public void AlterarTipo(string tipo)
+        {
+            Tipo = new TipoImplante(tipo);
+        }
+
+        public void AlterarPreco(decimal preco)
+        {
+            Preco = new Preco(preco);
+        }
+
+        public void AlterarQuantidade(int quantidade)
+        {
+            Quantidade = new Quantidade(quantidade);
+        }
+
     }
 }
