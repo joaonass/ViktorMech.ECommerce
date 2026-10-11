@@ -5,7 +5,7 @@ namespace VendingMachine.Domain.ValueObjects
 {
     public class Telefone : ValueObject
     {
-        public string Tel { get; }
+        public string Tel { get; } = null!;
 
         private Telefone() { }
         public Telefone(string tel)

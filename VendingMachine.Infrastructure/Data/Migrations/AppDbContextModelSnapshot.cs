@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using VendingMachine.Api.Data;
+using VendingMachine.Infrastructure.Data;
 
 #nullable disable
 
@@ -18,57 +18,10 @@ namespace VendingMachine.Infrastructure.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.11")
+                .HasAnnotation("ProductVersion", "10.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Carrinho", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId")
-                        .IsUnique();
-
-                    b.ToTable("Carrinho", (string)null);
-                });
-
-            modelBuilder.Entity("ItemCarrinho", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CarrinhoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProdutoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.ComplexProperty(typeof(Dictionary<string, object>), "Quantidade", "ItemCarrinho.Quantidade#Quantidade", b1 =>
-                        {
-                            b1.IsRequired();
-
-                            b1.Property<int>("Estoque")
-                                .HasColumnType("int")
-                                .HasColumnName("Quantidade");
-                        });
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarrinhoId");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("ItensCarrinho", (string)null);
-                });
 
             modelBuilder.Entity("VendingMachine.Domain.Entities.Administrador", b =>
                 {
@@ -91,11 +44,65 @@ namespace VendingMachine.Infrastructure.Data.Migrations
                     b.ToTable("Adm", (string)null);
                 });
 
+            modelBuilder.Entity("VendingMachine.Domain.Entities.Carrinho", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Carrinho", (string)null);
+                });
+
+            modelBuilder.Entity("VendingMachine.Domain.Entities.ItemCarrinho", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CarrinhoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProdutoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "Quantidade", "VendingMachine.Domain.Entities.ItemCarrinho.Quantidade#Quantidade", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<int>("Valor")
+                                .HasColumnType("int")
+                                .HasColumnName("Quantidade");
+                        });
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarrinhoId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("ItensCarrinho", (string)null);
+                });
+
             modelBuilder.Entity("VendingMachine.Domain.Entities.Produto", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "Estoque", "VendingMachine.Domain.Entities.Produto.Estoque#Estoque", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<int>("Valor")
+                                .HasColumnType("int");
+                        });
 
                     b.ComplexProperty(typeof(Dictionary<string, object>), "NomeDoProduto", "VendingMachine.Domain.Entities.Produto.NomeDoProduto#NomeDoProduto", b1 =>
                         {
@@ -116,14 +123,6 @@ namespace VendingMachine.Infrastructure.Data.Migrations
                                 .HasPrecision(18, 2)
                                 .HasColumnType("decimal(18,2)")
                                 .HasColumnName("Preco");
-                        });
-
-                    b.ComplexProperty(typeof(Dictionary<string, object>), "Quantidade", "VendingMachine.Domain.Entities.Produto.Quantidade#Quantidade", b1 =>
-                        {
-                            b1.IsRequired();
-
-                            b1.Property<int>("Estoque")
-                                .HasColumnType("int");
                         });
 
                     b.ComplexProperty(typeof(Dictionary<string, object>), "Tipo", "VendingMachine.Domain.Entities.Produto.Tipo#TipoImplante", b1 =>
@@ -230,18 +229,16 @@ namespace VendingMachine.Infrastructure.Data.Migrations
                     b.ToTable("Usuarios", (string)null);
                 });
 
-            modelBuilder.Entity("Carrinho", b =>
+            modelBuilder.Entity("VendingMachine.Domain.Entities.Carrinho", b =>
                 {
                     b.HasOne("VendingMachine.Domain.Entities.Usuario", null)
-                        .WithOne()
-                        .HasForeignKey("Carrinho", "UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("UsuarioId");
                 });
 
-            modelBuilder.Entity("ItemCarrinho", b =>
+            modelBuilder.Entity("VendingMachine.Domain.Entities.ItemCarrinho", b =>
                 {
-                    b.HasOne("Carrinho", null)
+                    b.HasOne("VendingMachine.Domain.Entities.Carrinho", null)
                         .WithMany("Itens")
                         .HasForeignKey("CarrinhoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -254,7 +251,7 @@ namespace VendingMachine.Infrastructure.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Carrinho", b =>
+            modelBuilder.Entity("VendingMachine.Domain.Entities.Carrinho", b =>
                 {
                     b.Navigation("Itens");
                 });

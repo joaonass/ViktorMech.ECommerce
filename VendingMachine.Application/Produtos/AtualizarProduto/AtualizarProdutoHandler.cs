@@ -22,7 +22,7 @@ namespace VendingMachine.Application.Produtos.AtualizarProduto
             var produto = await _produtoRepository.ObterPorIdAsync(command.Id);
 
             if (produto is null)
-                throw new DomainException("Produto não encontrado.");
+                throw new NotFoundException("Produto não encontrado.");
 
             if (command.Nome is not null)
                 produto.AlterarNome(command.Nome);

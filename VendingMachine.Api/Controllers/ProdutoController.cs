@@ -51,21 +51,16 @@ public class ProdutoController : ControllerBase
         return Ok(produto);
     }
     [HttpDelete("{id:guid}")]
-    public async Task<ActionResult<Produto>> DeletarProduto(Guid id)
+    public async Task<IActionResult> DeletarProduto(Guid id)
     {
         var command = new DeletarProdutoCommand
         {
             Id = id
         };
 
-        var produto = await _remover.Handle(command);
+        await _remover.Handle(command);
 
-        if(produto is null)
-        {
-            return NotFound();
-        }
-
-        return Ok(produto);
+        return NoContent();
     }
     [HttpPatch("{id:guid}")]
     public async Task<ActionResult<Produto>> AtualizarProduto(

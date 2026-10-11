@@ -7,10 +7,10 @@ namespace VendingMachine.Domain.Entities
     public class Produto
     {
         public Guid Id { get; private set; }
-        public NomeDoProduto NomeDoProduto { get; private set; }
-        public TipoImplante Tipo { get; private set; }
-        public Preco Preco { get; private set; }
-        public Quantidade Quantidade { get; private set; }
+        public NomeDoProduto NomeDoProduto { get; private set; } = null!;
+        public TipoImplante Tipo { get; private set; } = null!;
+        public Preco Preco { get; private set; } = null!;
+        public Estoque Estoque { get; private set; } = null!;
 
         private Produto() { }
 
@@ -19,7 +19,7 @@ namespace VendingMachine.Domain.Entities
             NomeDoProduto = new NomeDoProduto(nome);
             Tipo = new TipoImplante(tipo);
             Preco = new Preco(preco);
-            Quantidade = new Quantidade(quantidade);
+            Estoque = new Estoque(quantidade);
 
         }
 
@@ -40,7 +40,7 @@ namespace VendingMachine.Domain.Entities
 
         public void AlterarQuantidade(int quantidade)
         {
-            Quantidade = new Quantidade(quantidade);
+            Estoque = new Estoque(quantidade);
         }
 
     }

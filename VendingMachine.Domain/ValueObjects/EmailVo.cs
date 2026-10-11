@@ -7,7 +7,7 @@ namespace VendingMachine.Domain.ValueObjects
 {
     public class Email : ValueObject
     {
-        public string Endereco{ get; }
+        public string Endereco{ get; } = null!;
 
         // EF Core
         private Email() { }

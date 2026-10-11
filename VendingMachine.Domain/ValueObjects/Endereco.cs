@@ -5,11 +5,11 @@ namespace VendingMachine.Domain.ValueObjects
 {
     public class Endereco : ValueObject
     {
-        public string Rua { get; }
-        public int NumeroDoImovel { get; }
-        public string Bairro { get; }
-        public string Cidade { get; }
-        public string Cep { get; }
+        public string Rua { get; } = null!;
+        public int NumeroDoImovel { get; } 
+        public string Bairro { get; } = null!;
+        public string Cidade { get; } = null!;
+        public string Cep { get; } = null!;
 
         // EF Core
         private Endereco() { }

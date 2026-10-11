@@ -6,12 +6,15 @@ namespace VendingMachine.Domain.ValueObjects
 {
     public class Login : ValueObject
     {
-        public string Value { get; }
+        public string Value { get; } = null!;
 
         private Login() { }
         public Login(string login)
         {
+            login = login?.Trim() ?? string.Empty;
+
             Validar(login);
+
             Value = login;
         }
 

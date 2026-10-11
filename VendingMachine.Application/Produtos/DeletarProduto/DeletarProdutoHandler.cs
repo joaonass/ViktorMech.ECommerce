@@ -20,7 +20,7 @@ namespace VendingMachine.Application.Produtos.DeletarProduto
             var produto = await _produtoRepository.ObterPorIdAsync(command.Id);
 
             if (produto is null)
-                throw new DomainException("Produto não encontrado.");
+                throw new NotFoundException("Produto não encontrado.");
 
             await _produtoRepository.DeletarAsync(produto);
 

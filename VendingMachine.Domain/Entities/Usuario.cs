@@ -5,11 +5,11 @@ namespace VendingMachine.Domain.Entities{
     public class Usuario
     {
         public Guid Id { get; private set; }
-        public NomeCompleto NomeCompleto { get; private set; }
-        public Cpf Cpf { get; private set; }
-        public Email Email { get; private set; }
-        public Telefone Telefone { get; private set; }
-        public Endereco Endereco { get; private set; }
+        public NomeCompleto NomeCompleto { get; private set; } = null!;
+        public Cpf Cpf { get; private set; } = null!;
+        public Email Email { get; private set; } = null!;
+        public Telefone Telefone { get; private set; } = null!;
+        public Endereco Endereco { get; private set; } = null!;
 
         private Usuario() { }
         

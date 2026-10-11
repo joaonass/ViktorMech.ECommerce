@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VendingMachine.Domain.Entities;
 
-namespace VendingMachine.Api.Data.Configurations
+namespace VendingMachine.Infrastructure.Data.Configurations
 {
     public class ItemCarrinhoConfig : IEntityTypeConfiguration<ItemCarrinho>
     {
@@ -20,7 +20,7 @@ namespace VendingMachine.Api.Data.Configurations
 
             entity.ComplexProperty(i => i.Quantidade, quantidade =>
             {
-                quantidade.Property(q => q.Estoque)
+                quantidade.Property(q => q.Valor)
                     .HasColumnName("Quantidade")
                     .IsRequired();
             });

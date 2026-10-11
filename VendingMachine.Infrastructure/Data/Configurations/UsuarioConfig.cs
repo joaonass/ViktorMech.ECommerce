@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VendingMachine.Domain.Entities;
 
-namespace VendingMachine.Api.Data.Configurations
+namespace VendingMachine.Infrastructure.Data.Configurations
 {
     public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
     {

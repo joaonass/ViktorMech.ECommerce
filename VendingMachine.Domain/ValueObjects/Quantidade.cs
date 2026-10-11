@@ -5,7 +5,7 @@ namespace VendingMachine.Domain.ValueObjects
 {
     public class Quantidade : ValueObject
     {
-        public int Estoque { get; }
+        public int Valor { get; }
         
         private Quantidade() { }
 
@@ -13,7 +13,7 @@ namespace VendingMachine.Domain.ValueObjects
         {
             Validar(quantidade);
 
-            Estoque = quantidade;
+            Valor = quantidade;
         }
 
 
@@ -21,12 +21,12 @@ namespace VendingMachine.Domain.ValueObjects
         {
             if(quantidade <= 0)
             {
-                throw new DomainException("A quantidade de produto no estoque não pode ser zero");
+                throw new DomainException("A quantidade deve ser maior que zero.");
             }
         }
 
 
         protected override IEnumerable<object> GetEqualityComponents()
-            => [Estoque];
+            => [Valor];
     }
 }

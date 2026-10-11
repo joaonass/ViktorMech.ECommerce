@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VendingMachine.Domain.Entities;
 
-namespace VendingMachine.Api.Data.Configurations
+namespace VendingMachine.Infrastructure.Data.Configurations
 {
     public class CarrinhoConfig : IEntityTypeConfiguration<Carrinho>
     {
@@ -13,9 +13,9 @@ namespace VendingMachine.Api.Data.Configurations
             entity.HasKey(c => c.Id);
 
             entity.HasOne<Usuario>()
-                .WithOne()
-                .HasForeignKey<Carrinho>(c => c.UsuarioId)
-                .IsRequired();
+                .WithMany()
+                .HasForeignKey(c => c.UsuarioId)
+                .IsRequired(false);
 
             entity.HasMany(c => c.Itens)
                 .WithOne()

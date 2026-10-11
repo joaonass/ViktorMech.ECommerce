@@ -1,4 +1,4 @@
-@VendingMachine.Api_HostAddress = http://localhost:5037
+@VendingMachine.Api_HostAddress = http://localhost:5050
 
 ### Criar produto
 POST {{VendingMachine.Api_HostAddress}}/api/Produto
@@ -14,13 +14,13 @@ Content-Type: application/json
 ###
 
 ### Buscar produto
-GET {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+GET {{VendingMachine.Api_HostAddress}}/api/Produto/09580feb-5de5-4039-efdb-08df2751533a
 Accept: application/json
 
 ###
 
 ### PATCH - Alterar somente o preço
-PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/09580feb-5de5-4039-efdb-08df2751533a
 Content-Type: application/json
 
 {
@@ -30,7 +30,7 @@ Content-Type: application/json
 ###
 
 ### PATCH - Alterar preço e quantidade
-PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/0813d17c-28eb-4b59-2b1b-08df26e1fca6
 Content-Type: application/json
 
 {
@@ -41,7 +41,7 @@ Content-Type: application/json
 ###
 
 ### PATCH - Alterar todos os campos
-PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/09580feb-5de5-4039-efdb-08df2751533a
 Content-Type: application/json
 
 {
@@ -54,11 +54,90 @@ Content-Type: application/json
 ###
 
 ### Buscar novamente para confirmar
-GET {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+GET {{VendingMachine.Api_HostAddress}}/api/Produto/09580feb-5de5-4039-efdb-08df2751533a
 Accept: application/json
 
 ###
 
 ### Deletar produto
-DELETE {{VendingMachine.Api_HostAddress}}/api/Produto/COLE-O-ID-AQUI
+DELETE {{VendingMachine.Api_HostAddress}}/api/Produto/09580feb-5de5-4039-efdb-08df2751533a
 Accept: application/json
+
+###
+
+### Criar carrinho anônimo
+POST {{VendingMachine.Api_HostAddress}}/api/Carrinho/anonimo
+Content-Type: application/json
+
+###
+
+### Buscar carrinho pelo ID
+GET {{VendingMachine.Api_HostAddress}}/api/Carrinho/fa3089f7-99e3-42fb-88bc-08df2751b972
+Accept: application/json
+
+
+###
+
+### Adicionar produto ao carrinho
+POST {{VendingMachine.Api_HostAddress}}/api/Carrinho/fa3089f7-99e3-42fb-88bc-08df2751b972/itens
+Content-Type: application/json
+
+{
+    "carrinhoId": "fa3089f7-99e3-42fb-88bc-08df2751b972",
+    "produtoId": "c3093e9e-7c3e-4ad5-496a-08df2755449d",
+    "quantidade": 2
+}
+
+###
+
+### Consultar carrinho após adicionar produto
+GET {{VendingMachine.Api_HostAddress}}/api/Carrinho/fa3089f7-99e3-42fb-88bc-08df2751b972
+Accept: application/json
+
+###
+
+### Testar quantidade zero
+POST {{VendingMachine.Api_HostAddress}}/api/Carrinho/fa3089f7-99e3-42fb-88bc-08df2751b972/itens
+Content-Type: application/json
+
+{
+    "carrinhoId": "fa3089f7-99e3-42fb-88bc-08df2751b972",
+    "produtoId": "c3093e9e-7c3e-4ad5-496a-08df2755449d",
+    "quantidade": 0
+}
+
+###
+
+### Testar produto inexistente
+POST {{VendingMachine.Api_HostAddress}}/api/Carrinho/fa3089f7-99e3-42fb-88bc-08df2751b972/itens
+Content-Type: application/json
+
+{
+    "carrinhoId": "fa3089f7-99e3-42fb-88bc-08df2751b972",
+    "produtoId": "00000000-0000-0000-0000-000000000000",
+    "quantidade": 1
+}
+
+###
+
+### Testar carrinho inexistente
+POST {{VendingMachine.Api_HostAddress}}/api/Carrinho/00000000-0000-0000-0000-000000000000/itens
+Content-Type: application/json
+
+{
+    "carrinhoId": "00000000-0000-0000-0000-000000000000",
+    "produtoId": "09580feb-5de5-4039-efdb-08df2751533a",
+    "quantidade": 1
+}
+
+###
+
+### Testar quantidade superior ao estoque
+POST {{VendingMachine.Api_HostAddress}}/api/Carrinho/fa3089f7-99e3-42fb-88bc-08df2751b972/itens
+Content-Type: application/json
+
+{
+    "carrinhoId": "fa3089f7-99e3-42fb-88bc-08df2751b972",
+    "produtoId": "09580feb-5de5-4039-efdb-08df2751533a",
+    "quantidade": 999
+}

@@ -6,7 +6,7 @@ namespace VendingMachine.Domain.ValueObjects
     public class Preco : ValueObject
     {
 
-        public decimal Valor { get; }
+        public decimal Valor { get; } 
         private Preco() { }
         public Preco(decimal preco)
         {

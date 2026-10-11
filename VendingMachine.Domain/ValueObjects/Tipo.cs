@@ -5,7 +5,7 @@ namespace VendingMachine.Domain.ValueObjects
 {
     public class TipoImplante : ValueObject
     {
-        public string Tipo { get; }
+        public string Tipo { get; } = null!;
 
         private TipoImplante()
         {

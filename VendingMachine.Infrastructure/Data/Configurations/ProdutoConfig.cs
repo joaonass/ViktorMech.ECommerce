@@ -2,8 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VendingMachine.Domain.Entities;
 
-namespace VendingMachine.Api.Data.Configurations;
-
+namespace VendingMachine.Infrastructure.Data.Configurations;
 public class ProdutoConfig : IEntityTypeConfiguration<Produto>
 {
     public void Configure(EntityTypeBuilder<Produto> entity)
@@ -36,9 +35,9 @@ public class ProdutoConfig : IEntityTypeConfiguration<Produto>
                 .IsRequired();
         });
 
-        entity.ComplexProperty(p => p.Quantidade, quantidade =>
+        entity.ComplexProperty(p => p.Estoque, quantidade =>
         {
-            quantidade.Property(q => q.Estoque)
+            quantidade.Property(q => q.Valor)
                 .IsRequired();
         });
     }

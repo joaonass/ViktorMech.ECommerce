@@ -18,6 +18,8 @@ public static class DependencyInjection
                 configuration.GetConnectionString("DefaultConnection")));
 
         services.AddScoped<IProdutoRepository, ProdutoRepository>();
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddScoped<ICarrinhoRepository, CarrinhoRepository>();
 
         return services;
     }

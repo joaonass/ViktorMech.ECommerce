@@ -1,6 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <Compile Remove="Carrinhos\ObterCarrinho\ObterCarrinhoQuery\**" />
+    <EmbeddedResource Remove="Carrinhos\ObterCarrinho\ObterCarrinhoQuery\**" />
+    <None Remove="Carrinhos\ObterCarrinho\ObterCarrinhoQuery\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\VendingMachine.Domain\VendingMachine.Domain.csproj" />
   </ItemGroup>
 

@@ -6,7 +6,7 @@ namespace VendingMachine.Domain.ValueObjects
 {
     public class NomeDoProduto : ValueObject
     {
-        public string NomeProd { get; }
+        public string NomeProd { get; } = null!;
         private NomeDoProduto() { }
         public NomeDoProduto(string nome)
         {

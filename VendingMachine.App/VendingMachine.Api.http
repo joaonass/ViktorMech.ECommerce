@@ -1,0 +1,76 @@
+@VendingMachine.Api_HostAddress = http://localhost:5050
+
+### Criar produto
+POST {{VendingMachine.Api_HostAddress}}/api/Produto
+Content-Type: application/json
+
+{
+    "nome": "Braço Cibernético Mk.1",
+    "tipo": "Implante",
+    "preco": 5000,
+    "quantidade": 10
+}
+
+###
+
+### Buscar produto
+GET {{VendingMachine.Api_HostAddress}}/api/Produto/09580feb-5de5-4039-efdb-08df2751533a
+Accept: application/json
+
+###
+
+### PATCH - Alterar somente o preço
+PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/09580feb-5de5-4039-efdb-08df2751533a
+Content-Type: application/json
+
+{
+    "preco": 7500
+}
+
+###
+
+### PATCH - Alterar preço e quantidade
+PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/0813d17c-28eb-4b59-2b1b-08df26e1fca6
+Content-Type: application/json
+
+{
+    "preco": 8000,
+    "quantidade": 20
+}
+
+###
+
+### PATCH - Alterar todos os campos
+PATCH {{VendingMachine.Api_HostAddress}}/api/Produto/09580feb-5de5-4039-efdb-08df2751533a
+Content-Type: application/json
+
+{
+    "nome": "Braço Cibernético Mk.2",
+    "tipo": "Implante Militar",
+    "preco": 10000,
+    "quantidade": 5
+}
+
+###
+
+### Buscar novamente para confirmar
+GET {{VendingMachine.Api_HostAddress}}/api/Produto/09580feb-5de5-4039-efdb-08df2751533a
+Accept: application/json
+
+###
+
+### Deletar produto
+DELETE {{VendingMachine.Api_HostAddress}}/api/Produto/09580feb-5de5-4039-efdb-08df2751533a
+Accept: application/json
+
+###
+
+### Criar carrinho anônimo
+POST {{VendingMachine.Api_HostAddress}}/api/Carrinho/anonimo
+Content-Type: application/json
+
+###
+
+### Buscar carrinho pelo ID
+GET {{VendingMachine.Api_HostAddress}}/api/Carrinho/697409d0-0209-4055-7a97-08df274f7025
+Accept: application/json

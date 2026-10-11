@@ -15,11 +15,6 @@ public class CriarProdutoHandler
 
     public async Task<Produto> Handle(CriarProdutoCommand command)
     {
-        var nome = new NomeDoProduto(command.Nome);
-        var tipo = new TipoImplante(command.Tipo);
-        var preco = new Preco(command.Preco);
-        var quantidade = new Quantidade(command.Quantidade);
-
         var produto = new Produto(
             command.Nome,
             command.Tipo,

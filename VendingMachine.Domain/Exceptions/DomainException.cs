@@ -14,5 +14,6 @@
         public DomainException(string? message, Exception? innerException) : base(message, innerException)
         {
         }
+
     }
 }

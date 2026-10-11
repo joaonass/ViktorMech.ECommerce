@@ -7,7 +7,7 @@ namespace VendingMachine.Domain.ValueObjects
 
     public class Cpf : ValueObject
     {
-        public string Valor { get; }
+        public string Valor { get; } = null!;
         private Cpf(){}
 
         public Cpf(string valor)
